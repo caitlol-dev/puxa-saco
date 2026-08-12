@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Gerador de frases de puxa-saco para levantar o ego e dar aquela motivada." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gerador de frases de puxa-saco para dar aquela levantada no ego.">
   <title>Gerador de Puxa-Saco</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="saco.png">
-
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-theme="dark">
+
+  <div class="theme-control" aria-label="Escolher tema">
+    <span class="theme-label">Tema</span>
+    <button class="theme-option" data-theme-option="light" type="button">Claro</button>
+    <button class="theme-option active" data-theme-option="dark" type="button">Escuro</button>
+  </div>
+
   <main class="container">
     <section class="card">
       <h1>Gerador de <span>Puxa-Saco</span></h1>
 
       <p class="subtitle">
-        Tá precisando de alguém pra puxar seu saco hoje?
-        Clique no botão e receba a bajulação que você merece.
+        Tá precisando de alguém pra puxar seu saco hoje? Clique no botão e
+        receba a bajulação que você merece.
       </p>
 
       <div class="frase-box" id="fraseBox">
@@ -29,7 +30,7 @@
         </p>
       </div>
 
-      <button id="gerarBtn" class="gerar-btn">
+      <button id="gerarBtn" class="gerar-btn" type="button">
         Puxa meu saco
       </button>
 
@@ -41,32 +42,40 @@
           aria-expanded="false"
           aria-controls="estiloMenu"
         >
-          <span class="estilo-btn-texto">
-            <span>Estilo: <strong id="estiloAtual">Aleatório</strong></span>
-          </span>
-          <span class="seta" aria-hidden="true">⌄</span>
+          <span>Estilo: <strong id="estiloAtual">Aleatório</strong></span>
+          <span class="seta" aria-hidden="true"></span>
         </button>
 
         <div id="estiloMenu" class="estilo-menu" hidden>
           <button class="estilo-opcao ativo" data-estilo="aleatorio" type="button">
-            <span><strong>Aleatório</strong>
+            <strong>Aleatório</strong>
+            <small>Mistura todos os estilos</small>
+          </button>
 
           <button class="estilo-opcao" data-estilo="amizade" type="button">
-            <span><strong>Amizade</strong>
+            <strong>Amizade</strong>
+            <small>Para enaltecer seus amigos</small>
+          </button>
 
           <button class="estilo-opcao" data-estilo="relacionamento" type="button">
-            <span><strong>Relacionamento</strong>
+            <strong>Relacionamento</strong>
+            <small>Carinho e admiração</small>
+          </button>
 
           <button class="estilo-opcao" data-estilo="corporativo" type="button">
-            <span><strong>Corporativo</strong>
+            <strong>Corporativo</strong>
+            <small>Para trabalho, equipe e carreira</small>
+          </button>
 
           <button class="estilo-opcao" data-estilo="sarcastico" type="button">
-            <span><strong>Sarcástico</strong>
+            <strong>Sarcástico</strong>
+            <small>Bajulação com uma provocada</small>
+          </button>
         </div>
       </div>
 
       <div class="acoes">
-        <button id="copiarBtn" class="secundario" disabled>
+        <button id="copiarBtn" class="secundario" type="button" disabled>
           Copiar frase
         </button>
 
@@ -77,12 +86,10 @@
     </section>
   </main>
 
-  <div class="decor decor-1"></div>
-  <div class="decor decor-2"></div>
-
   <footer>
     Feito para dias em que a autoestima precisa de um funcionário dedicado.
-    Desenvolvido por <a href="https://github.com/caitlol-dev" target="_blank">Caitlol.dev</a>.
+    Desenvolvido por
+    <a href="https://github.com/caitlol-dev" target="_blank" rel="noopener noreferrer">Caitlol.dev</a>.
   </footer>
 
   <script src="script.js"></script>

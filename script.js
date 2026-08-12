@@ -43,9 +43,9 @@ const frases = {
     "Você entra numa reunião e o PowerPoint automaticamente ganha credibilidade.",
     "Seu potencial de liderança está quase pedindo CNPJ próprio.",
     "Você não resolve problema. Você transforma problema em oportunidade de apresentação.",
-    "Seu LinkedIn deveria ter a opção 'humilhar concorrência' nas competências.",
+    "Seu LinkedIn deveria ter a opção de humilhar a concorrência nas competências.",
     "Se organização fosse promoção, seu crachá já teria mudado de cargo sozinho.",
-    "Você tem energia de quem fala 'deixa comigo' e realmente volta com tudo resolvido.",
+    "Você tem energia de quem fala deixa comigo e realmente volta com tudo resolvido.",
     "Seu trabalho em equipe parece feature premium.",
     "Até seu café provavelmente vem com plano de ação e próximos passos.",
     "Você tem tanta visão estratégica que até o futuro pede sua opinião.",
@@ -89,10 +89,33 @@ const estiloBtn = document.getElementById("estiloBtn");
 const estiloMenu = document.getElementById("estiloMenu");
 const estiloAtual = document.getElementById("estiloAtual");
 const opcoesEstilo = document.querySelectorAll(".estilo-opcao");
+const themeOptions = document.querySelectorAll(".theme-option");
 
 let total = 0;
 let estiloSelecionado = "aleatorio";
 let ultimaFrase = "";
+
+function aplicarTema(tema) {
+  document.body.dataset.theme = tema;
+
+  themeOptions.forEach((botao) => {
+    botao.classList.toggle("active", botao.dataset.themeOption === tema);
+  });
+
+  localStorage.setItem("tema-puxa-saco", tema);
+}
+
+function carregarTema() {
+  const temaSalvo = localStorage.getItem("tema-puxa-saco");
+
+  if (temaSalvo === "light" || temaSalvo === "dark") {
+    aplicarTema(temaSalvo);
+    return;
+  }
+
+  const prefereClaro = window.matchMedia("(prefers-color-scheme: light)").matches;
+  aplicarTema(prefereClaro ? "light" : "dark");
+}
 
 function pegarListaAtual() {
   if (estiloSelecionado !== "aleatorio") {
@@ -119,7 +142,8 @@ function gerarFrase() {
   fraseBox.classList.add("animando");
 
   total++;
-  contador.textContent = `${total} ${total === 1 ? "bajulação recebida" : "bajulações recebidas"}`;
+  contador.textContent =
+    `${total} ${total === 1 ? "bajulação recebida" : "bajulações recebidas"}`;
 
   copiarBtn.disabled = false;
   copiarBtn.textContent = "Copiar frase";
@@ -127,6 +151,7 @@ function gerarFrase() {
 
 function abrirOuFecharMenu() {
   const estaAberto = estiloBtn.getAttribute("aria-expanded") === "true";
+
   estiloBtn.setAttribute("aria-expanded", String(!estaAberto));
   estiloMenu.hidden = estaAberto;
 }
@@ -149,9 +174,11 @@ function selecionarEstilo(estilo) {
 }
 
 async function copiarFrase() {
+  const texto = frase.textContent.replaceAll('"', "");
+
   try {
-    await navigator.clipboard.writeText(frase.textContent.replaceAll('"', ""));
-    copiarBtn.textContent = "Copiado ✓";
+    await navigator.clipboard.writeText(texto);
+    copiarBtn.textContent = "Copiado";
 
     setTimeout(() => {
       copiarBtn.textContent = "Copiar frase";
@@ -160,6 +187,10 @@ async function copiarFrase() {
     copiarBtn.textContent = "Não foi possível copiar";
   }
 }
+
+themeOptions.forEach((botao) => {
+  botao.addEventListener("click", () => aplicarTema(botao.dataset.themeOption));
+});
 
 gerarBtn.addEventListener("click", gerarFrase);
 copiarBtn.addEventListener("click", copiarFrase);
@@ -180,3 +211,5 @@ document.addEventListener("keydown", (event) => {
     fecharMenu();
   }
 });
+
+carregarTema();
