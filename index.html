@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="saco.png">
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -29,9 +30,40 @@
       </div>
 
       <button id="gerarBtn" class="gerar-btn">
-        <span>✨</span>
         Puxa meu saco
       </button>
+
+      <div class="seletor-estilo">
+        <button
+          id="estiloBtn"
+          class="estilo-btn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="estiloMenu"
+        >
+          <span class="estilo-btn-texto">
+            <span>Estilo: <strong id="estiloAtual">Aleatório</strong></span>
+          </span>
+          <span class="seta" aria-hidden="true">⌄</span>
+        </button>
+
+        <div id="estiloMenu" class="estilo-menu" hidden>
+          <button class="estilo-opcao ativo" data-estilo="aleatorio" type="button">
+            <span><strong>Aleatório</strong>
+
+          <button class="estilo-opcao" data-estilo="amizade" type="button">
+            <span><strong>Amizade</strong>
+
+          <button class="estilo-opcao" data-estilo="relacionamento" type="button">
+            <span><strong>Relacionamento</strong>
+
+          <button class="estilo-opcao" data-estilo="corporativo" type="button">
+            <span><strong>Corporativo</strong>
+
+          <button class="estilo-opcao" data-estilo="sarcastico" type="button">
+            <span><strong>Sarcástico</strong>
+        </div>
+      </div>
 
       <div class="acoes">
         <button id="copiarBtn" class="secundario" disabled>
@@ -50,6 +82,7 @@
 
   <footer>
     Feito para dias em que a autoestima precisa de um funcionário dedicado.
+    Desenvolvido por <a href="https://github.com/caitlol-dev" target="_blank">Caitlol.dev</a>.
   </footer>
 
   <script src="script.js"></script>
